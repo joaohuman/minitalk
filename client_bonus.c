@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client_bonus.c                                     :+:      :+:    :+:   */
+/*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jvictor- <jvictor-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 01:17:29 by jvictor-          #+#    #+#             */
-/*   Updated: 2022/04/17 03:48:33 by jvictor-         ###   ########.fr       */
+/*   Updated: 2022/04/29 23:10:38 by jvictor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,8 @@ void	confirm_handler(int sig)
 {
 	if (sig == SIGUSR2)
 		g_bit_send = 1;
-	else
+	else if (sig == SIGUSR1)
 		write(1, "\nMESSAGE SENT SUCESSFULLY\n\n", 28);
-	(void)sig;
 }
 
 void	send_signal(int bit, int pid)
@@ -79,12 +78,11 @@ int	main(int argc, char **argv)
 	int					pid;
 	struct sigaction	sa;
 
-	if (argc != 3)
-	{
+	if (argc != 3 || ft_isdigit(argv[1]) == 0)
 		ft_usage();
-		exit(1);
-	}
 	pid = ft_atoi(*(argv + 1));
+	if (pid <= 1)
+		ft_usage();
 	ft_bzero(&sa, sizeof(struct sigaction));
 	sa.sa_handler = confirm_handler;
 	if (sigaction(SIGUSR2, &sa, NULL))

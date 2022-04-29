@@ -6,7 +6,7 @@
 /*   By: jvictor- <jvictor-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 02:10:53 by jvictor-          #+#    #+#             */
-/*   Updated: 2022/04/17 03:53:29 by jvictor-         ###   ########.fr       */
+/*   Updated: 2022/04/29 21:13:32 by jvictor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,5 @@ void	convert(int c, int pid);
 void	send_zero(int pid);
 void	ft_putnbr_fd(int n, int fd);
 void	ft_usage(void);
+int		ft_isdigit(char *str);
 #endif

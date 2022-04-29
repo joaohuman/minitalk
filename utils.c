@@ -6,7 +6,7 @@
 /*   By: jvictor- <jvictor-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/17 00:33:58 by jvictor-          #+#    #+#             */
-/*   Updated: 2022/04/17 03:53:31 by jvictor-         ###   ########.fr       */
+/*   Updated: 2022/04/29 23:06:35 by jvictor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,22 @@ void	ft_putnbr_fd(int n, int fd)
 
 void	ft_usage(void)
 {
-	write(1, "\nUSAGE: ./client <PID> <MESSAGE>\n\n", 34);
+	write(1, "\nUSAGE: ./client <PID of SERVER> <MESSAGE>\n\n", 44);
+	exit(1);
+}
+
+int	ft_isdigit(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (i == 0 && str[i] == '+')
+			i++;
+		if (str[i] < '0' || str[i] > '9')
+			return (0);
+		i++;
+	}
+	return (1);
 }
